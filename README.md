@@ -280,3 +280,133 @@ N50: 100,494 bp
 
 #Visualization of Optimized genome assembly using Bandage
 
+
+4. MyGenome Gene Prediction
+
+    Records steps used to generate the HMM file used for gene prediction (1 pt)
+    Summarize outputs from snap and AUGUSTUS and MAKER gene predictions (#s of gene identified) (1 pt) 
+    Include a screenshot of an IGV window showing a few MAKER gene models (1 pt)
+
+5. BLASTing MyGenome
+
+    Record code used to perform the various queries of the genome (1 pt)
+    Summarize the findings (1 pt)
+    Upload i) outputs of your command line queries of the MyGenome; and ii) the csv file with the list of mitochondrial contigs that will be uploaded to NCBI to GitHub and use a link to point to these files at appropriate points in the notebook (1 pt).
+
+
+
+
+
+#### MyGenome Gene Prediction
+
+    This section contains:
+    1. Steps used to generate the HMM file used for gene prediction
+    2. Summary of outputs from snap and AUGUSTUS and MAKER gene predictions (#s of gene identified)
+    3. Screenshot of an IGV window showing a few MAKER gene models 
+
+
+##### Generate HMM file to be used for gene prediction
+
+
+1. Log into the VM
+
+   ```
+   ssh opik222@opik222.cs.uky.edu
+   ```
+
+2. Start a screen session
+
+   ```
+   screen -S genes bash -l
+   ```
+3. List available models
+
+   ```
+   echo $ZOE
+   ```
+4. Look inside the directory
+
+   ```
+   ls $ZOE
+   ```
+
+
+
+   ##### Generate training data for SNAP and AUGUSTUS
+
+
+1. Change to the snap directory under ~/genes where the intermediate results and output will be kept.
+
+   ```
+   cd ~/genes/snap
+   ```
+
+2. Download the B71ref2.fasta genome and B71Ref2_a0.3.gff3 annotation file from the /project/farman_26abt480/RESOURCES directory.
+
+   ```
+ scp opik222@mcc.uky.edu:/project/farman_s26abt480/RESOURCES/B71Ref2.fasta . 
+ scp opik222@mcc.uky.edu:/project/farman_s26abt480/RESOURCES/B71Ref2_a0.3.gff3 .
+   ```
+3. Append the genome fasta sequence to the end of the gff3
+
+   ```
+  echo '##FASTA' | cat B71Ref2_a0.3.gff3 - B71Ref2.fasta > B71Ref2.gff3
+   ```
+4. Check that the B71Ref2.gff3 file has the correct format
+
+   ```
+   grep '##FASTA' -B 5 -A 5 B71Ref2.gff3
+   ```
+
+5. Convert the MAKER annotations to ZFF for SNAP
+
+   ```
+  maker2zff B71Ref2.gff3
+   ```
+
+6. Using -gene-stats,get information on the annotations. #This subcommand outputs to the screen the number of sequences (contigs), the number of genes annotated, GC content, average intron and exon lengths, and more.
+
+   ```
+  fathom genome.ann genome.dna -gene-stats
+   ```
+7. Extract the genome regions containing unique genes using the -categorize subcommand. #This subcommand creates a number of pairs of ZFF and FASTA files: one pair for regions with errors, one for regions with overlapping genes, and so on. We will ask for up to 1000 base pairs of intergenic sequence on both sides of each gene to help train the HMM about what sequences are likely to occur near genes.
+
+   ```
+   fathom genome.ann genome.dna -categorize 1000
+   ```
+
+8. Use annotations found in uni.ann to train SNAP. #Training SNAP  usually works best with unique, non-overlapping genes without alternative splicing; these annotations may be found in uni.ann, and the accompanying sequences in uni.dna. look at their statistics using
+
+   ```
+  fathom uni.ann uni.dna -gene-stats
+   ```
+
+9. use the -export subcommand to extract the genome, transcript, and protein sequences from these genes. We must tell -export as well to keep 1000 base pairs of context and also (with -plus) to flip genes that are on the reverse strand (that is, with their 3' end nearer the beginning of the contig than their 5'). The output is in four files:
+#export.ann ZFF annotations for the exons of each gene.
+#export.dna DNA sequence for each gene, including introns and flanking regions.
+#export.tx DNA sequence for each transcript.
+#export.aa Protein sequence for each gene.
+
+   ```
+   fathom uni.ann uni.dna -export 1000 -plus
+   ```
+
+10. The data is now in suitable format to train the HMM using the forge tool.
+   ```
+  forge export.ann export.dna
+   ```
+
+
+11.Use SNAP tool, hmm-assembler.pl, to condense the large  number of .model and .count files generated from using the forge tool into a single file for use with runs of SNAP.
+   ```
+ hmm-assembler.pl Moryzae . > Moryzae.hmm
+   ```
+
+12.Peek at the Moryzae.hmm file to get a sense of how the gene statistics are represented.
+   ```
+ head Moryzae.hmm
+   ```
+13.Copy the Moryzae.hmm file to your Sg339ss1 directory on MCC. We will need it for running MAKER later
+   ```
+scp ~/genes/snap/Moryzae.hmm opik222@mcc.uky.edu:/project/farman_s26abt480/opik222/Sg339ss1/
+   ```
