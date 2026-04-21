@@ -305,8 +305,7 @@ N50: 100,494 bp
     3. Screenshot of an IGV window showing a few MAKER gene models 
 
 
-##### Generate HMM file to be used for gene prediction
-
+##### Generate HMM file to be used for gene prediction 
 
 1. Log into the VM
 
@@ -406,7 +405,18 @@ N50: 100,494 bp
    ```
  head Moryzae.hmm
    ```
-13.Copy the Moryzae.hmm file to your Sg339ss1 directory on MCC. We will need it for running MAKER later
+13.Copy the Moryzae.hmm file to the Sg339ss1 directory on MCC. We will need it for running MAKER later
    ```
 scp ~/genes/snap/Moryzae.hmm opik222@mcc.uky.edu:/project/farman_s26abt480/opik222/Sg339ss1/
    ```
+
+
+
+
+##### Summary of outputs from snap and AUGUSTUS and MAKER gene predictions (#s of gene identified)
+1. Number of genes identified using SNAP = 12, 737
+2. Number of genes identified using AUGUSTUS = 5366
+3. Number of genes identified using MAKER = 12,849
+
+
+###### Screenshot of an IGV window showing a few MAKER gene models
