@@ -417,11 +417,11 @@ scp ~/genes/snap/Moryzae.hmm opik222@mcc.uky.edu:/project/farman_s26abt480/opik2
 
 
 # Blasting the Sg339ss1 genome
-A BLAST comparison between Sg339ss1  and B71 reference was performed using BLASTN (e-value ≤ 1e-100).
+A BLAST comparison between Sg339ss1 genome and B71 reference genome performed using BLASTN (e-value ≤ 1e-100).
 
  This section contains
-1. Code used to identify mitochondrial contigs in Sg339ss1 assembly
-2. Code used to align Sg339ss1 Genome with B71 reference genome
+1. Code used to identify mitochondrial contigs in the Sg339ss1 genome assembly
+2. Code used to align Sg339ss1 genome with B71 reference genome
 3. Record of the number of contigs in Sg339ss1 assembly that lack matches in B71 reference genome
 4. gff file of Sg339ss1 genome aligned against B1 reference
 5. Screenshot of a B71 chromosome that contains a large block of sequence absent from Sg339ss1 genome.
@@ -429,6 +429,9 @@ A BLAST comparison between Sg339ss1  and B71 reference was performed using BLAST
 
 
  ## Identify mitochondrial contigs in Sg339ss1 assembly
+
+
+### Align Sg339ss1 genome with B71 reference genome
 
 1. Login to the VM and cd into the blast directory
    ```
@@ -457,13 +460,12 @@ A BLAST comparison between Sg339ss1  and B71 reference was performed using BLAST
    ```
   head -n 50 B71.Sg339ss1.BLAST
    ```
-
-
 #### Summary of findings:
 - Total contigs in assembly: 3161
 - Contigs with B71 matches: 1461
 - Contigs with no detectable B71 match: 170
 
+##### gff file of Sg339ss1 genome aligned against B1 reference
 
 
 
@@ -471,6 +473,7 @@ A BLAST comparison between Sg339ss1  and B71 reference was performed using BLAST
 
 
 
+###### Screenshot of a B71 chromosome that contains a large block of sequence absent from Sg339ss1 genome.
 
 
 
