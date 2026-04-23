@@ -281,23 +281,12 @@ N50: 100,494 bp
 #Visualization of Optimized genome assembly using Bandage
 
 
-4. MyGenome Gene Prediction
-
-    Records steps used to generate the HMM file used for gene prediction (1 pt)
-    Summarize outputs from snap and AUGUSTUS and MAKER gene predictions (#s of gene identified) (1 pt) 
-    Include a screenshot of an IGV window showing a few MAKER gene models (1 pt)
-
-5. BLASTing MyGenome
-
-    Record code used to perform the various queries of the genome (1 pt)
-    Summarize the findings (1 pt)
-    Upload i) outputs of your command line queries of the MyGenome; and ii) the csv file with the list of mitochondrial contigs that will be uploaded to NCBI to GitHub and use a link to point to these files at appropriate points in the notebook (1 pt).
 
 
 
 
 
-#### MyGenome Gene Prediction
+#### Sg339ss1 Genome Gene Prediction
 
     This section contains:
     1. Steps used to generate the HMM file used for gene prediction
@@ -420,3 +409,137 @@ scp ~/genes/snap/Moryzae.hmm opik222@mcc.uky.edu:/project/farman_s26abt480/opik2
 
 
 ###### Screenshot of an IGV window showing a few MAKER gene models
+
+
+
+
+
+
+
+# Blasting the Sg339ss1 genome
+A BLAST comparison between Sg339ss1  and B71 reference was performed using BLASTN (e-value ≤ 1e-100).
+
+ This section contains
+1. Code used to identify mitochondrial contigs in Sg339ss1 assembly
+2. Code used to align Sg339ss1 Genome with B71 reference genome
+3. Record of the number of contigs in Sg339ss1 assembly that lack matches in B71 reference genome
+4. gff file of Sg339ss1 genome aligned against B1 reference
+5. Screenshot of a B71 chromosome that contains a large block of sequence absent from Sg339ss1 genome.
+
+
+
+ ## Identify mitochondrial contigs in Sg339ss1 assembly
+
+1. Login to the VM and cd into the blast directory
+   ```
+   myVM
+   cd blast
+   ```
+
+2. Copy the final genome assembly from MCC into the blast directory
+   ```
+ scp opik222@mcc.uky.edu:/project/farman_s26abt480/opik222/Sg339ss1/Sg339ss1_final.fasta . 
+
+   ```
+3. Copy the B71.fasta file from /project/farman_s26abt480/BLAST into the blast directory
+
+   ```
+  scp opik222@mcc.uky.edu:/project/farman_s26abt480/BLAST/B71.fasta .
+   ```
+4. Perform a BLAST search using the B71 genome as a query and MyGenome as the subject:
+
+   ```
+   blastn -query B71.fasta -subject Sg339ss1_final.fasta -evalue 1e-100 -outfmt 7 > B71.Sg339ss1.BLAST
+   ```
+
+5.Peek at the output file and interpret each alignment
+
+   ```
+  head -n 50 B71.Sg339ss1.BLAST
+   ```
+
+
+#### Summary of findings:
+- Total contigs in assembly: 3161
+- Contigs with B71 matches: 1461
+- Contigs with no detectable B71 match: 170
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###### Outputs of the command line queries of the Sg339ss1 genome
+
+
+The following queries were answered using command line tools
+1. Are there any contigs in the Sg339ss1 genome assembly that have no corresponding matches in the B71 reference genome?
+2. Create a list of Sg339ss1 genome contigs that lack matches in the B71 reference
+3. Are there any large chromosome segments in the B71 reference genome that are missing in Sg339ss1 genome?
+
+## To check if any contigs in Sg339ss1 assembly don't have corresponding matches in the B71 reference genome
+   
+
+1. Get all contigs in the assembly
+   ```
+ grep ">" Sg339ss1_final.fasta | sed 's/>//' | cut -d' ' -f1 | sort > all_contigs.txt
+
+   ```
+2. Extract contigs that have BLAST hits
+
+   ```
+  grep -v "^#" B71.Sg339ss1.BLAST | cut -f2 | sort | uniq > matched_contigs.txt
+   ```
+3. Find contigs with no matches:
+
+   ```
+   comm -23 all_contigs.txt matched_contigs.txt > no_match_contigs.txt
+   ```
+
+5.Confirm findings by counting no match contigs
+
+   ```
+ wc -l no_match_contigs.txt
+   ```
+
+#OUTPUT
+1700 no_match_contigs.txt
+
+
+#### To create a list of Sg339ss1 genome contigs that lack matches in the B71 reference
+
+1.Display all contigs
+   ```
+ cat no_match_contigs.txt
+ less no_match_contigs.txt
+
+   ```
+2. Copy to a new file Sg339ss1_no_B71_hits.txt
+
+   ```
+  cp no_match_contigs.txt Sg339ss1_no_B71_hits.txt
+   ```
+3. Find contigs with no matches:
+
+   ```
+   comm -23 all_contigs.txt matched_contigs.txt > no_match_contigs.txt
+   ```
+
+5.Confirm findings by counting no match contigs
+
+   ```
+ wc -l no_match_contigs.txt
+   ```
+
+
+
+
