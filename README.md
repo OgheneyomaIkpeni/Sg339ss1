@@ -1,28 +1,31 @@
 # Sg339ss1
 Genome assembly of Pyricularia oryzae (Isolate Sg339ss1) 
-## MyGenome - Sg339ss1
+# MyGenome - Sg339ss1
 **Repository URL:** https://github.com/OgheneyomaIkpeni/Sg339ss1/
 
 This repository consists bash command line codes for sequence quality assessment and trimming, genome and transcriptome assembly, gene prediction, expression analysis and data visualization.
 
 ---
 
-### Table of Contents
+# Table of Contents
 1. [Sequence Data, Quality Assessment and Trimming](#sequence-data-quality-assessment-and-trimming)
 2. [Genome Assembly](#genome-assembly)
 3. [BLAST](#Blast)
 
 ---
 
-#### Sequence Data, Quality Assessment and Trimming
+# Sequence Data, Quality Assessment and Trimming
 
-    This contains:
+    This section contains:
     1. code used to download data, assess quality and perform trimming 
     2. Summary of FASTQC metrics and note warnings and failures.
     3. Images of Summary and Adaptor Content tabs (before and after trimming) 
 
 
-##### Copy sequence data to the working directory (sequence) on the VM
+## To download data, assess quality and perform trimming, the following commands were run
+
+
+### Copy sequence data to the working directory (sequence) on the VM
 
 
 1. Log into the VM
@@ -41,7 +44,7 @@ This repository consists bash command line codes for sequence quality assessment
 
 ```
 
-### Assess Sequence Quality with fastqc
+#### Assess Sequence Quality with fastqc
 
 1. Run FastQC on the forward and reverse reads:
 
@@ -78,7 +81,7 @@ scp opik222@opik222.cs.uky.edu:~/sequences/Sg339ss1/*_fastqc.html .
 7. Open the FASTQC reports by double-clicking on the files and browse the various metrics by clicking on the tabs under summary.
 
 
-###### Summary of FASTQC metrics and note warnings and failures
+##### Summary of FASTQC metrics and note warnings and failures
 Total sequences (#raw reads (single end)) = 6,623,435
 Total Bases = 993.5Mbp
 Sequence length = 150
