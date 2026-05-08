@@ -553,3 +553,77 @@ The following queries were answered using command line tools
 
 
 
+# Using RNAseq Data to Confirm Gene Predictions
+
+    This section contains:
+1. Steps and code  used to align reads generated from RNA extracted from P. oryzae strain FR13 grown in liquid culture (inCulture) and Indexing of the alignment file for fast lookup
+2. Steps and code used to align reads generated from RNA extracts from lesions of P. oryzae strain SSID16 growing in rice leaves (inPlanta)
+Index the alignment file for fast lookup
+3. Visualizations of the RNAseq read alignments in the IGV browser, along with the gene prediction tracks
+    
+
+##### Align in culture and in planta reads to Sg33s1 genome assembly
+
+1.  Create a directory on MCC named RNAseq
+2.  Copy the RNAseq reads from the RNAseqData directory (in /project/farman_s26abt480) to the RNAseq directory
+3.  Copy the hisat2.sh script from SLURM_SCRIPTs into the RNAseq directory
+4.  Edit the script to include your email address
+5. Change directory into RNAseq 
+6. Align the first set of reads to Sg33s1 genome assembly (In culture expression)
+
+   ```
+   sbatch hisat2.sh path/to/Sg339ss1_final.fasta FR13_inCulture.fastq.gz
+   ```
+7.Look at the resulting alignment summary file to determine the fraction fo reads that aligned to your genome assembly
+
+#Alignment summary
+13977971 reads; of these:
+  13977971 (100.00%) were unpaired; of these:
+    6003515 (42.95%) aligned 0 times
+    7958093 (56.93%) aligned exactly 1 time
+    16363 (0.12%) aligned >1 times
+57.05% overall alignment rate
+
+
+8. Align the second set of reads to Sg33s1 genome assembly (In planta expression)
+
+   ```
+   sbatch hisat2.sh path/to/MyGenomeID_final.fasta SSID116_inPlanta.fastq.gz
+   ```
+9.Look at the resulting alignment summary file to determine the fraction fo reads that aligned to your genome assembly
+
+#Alignment summary
+
+28650911 reads; of these:
+  28650911 (100.00%) were unpaired; of these:
+    15793864 (55.13%) aligned 0 times
+    12723657 (44.41%) aligned exactly 1 time
+    133390 (0.47%) aligned >1 times
+
+10) Transfer the alignment and index files (.bam and bam.bai) to the machine that is running IGV
+
+11) Load your genome assembly into IGV and then load the tracks for your gene predictions and the RNAseq aligment data (make sure the .bai files are in the same directory as the .bam files)
+
+12) Use the browser to identify predicted genes that have large numbers of RNAseq reads aligning to them and then search for examples of the following:
+
+    # genes with predicted introns
+
+
+    # do the RNAseq data support the placement of the predicted introns?
+
+
+   # are the introns spliced out 100% of the time?
+
+
+   # genes that are only expressed in culture
+
+
+   # genes that are only expressed in planta
+
+
+
+   # predicted genes with no evidence of expression
+
+
+
+  # are there any expressed genes that were not predicted?
