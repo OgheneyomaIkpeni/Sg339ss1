@@ -11,8 +11,7 @@ This repository consists bash command line codes for sequence quality assessment
 1. [Sequence Data, Quality Assessment and Trimming](#sequence-data-quality-assessment-and-trimming)
 2. [Genome Assembly](#genome-assembly)
 3. [BLAST](#Blast)
-4. 
-   
+4. [Genome Gene Prediction](#genome-gene-prediction)
 5. 
 6. 
 
