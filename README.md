@@ -12,8 +12,9 @@ This repository consists bash command line codes for sequence quality assessment
 2. [Genome Assembly](#genome-assembly)
 3. [BLAST](#Blast)
 4. [Genome Gene Prediction](#genome-gene-prediction)
-5. 
+5. [Blasting the Sg339ss1 genome](#blasting-the-sg339ss1-genome)
 6. 
+7. 
 
 ---
 
@@ -156,7 +157,7 @@ Sequence length = 125 - 150
 
 
 ---
-#Genome Assembly
+# Genome Assembly
 
 ##Prepare genome assembly workspace
 
@@ -421,7 +422,7 @@ scp ~/genes/snap/Moryzae.hmm opik222@mcc.uky.edu:/project/farman_s26abt480/opik2
 
 
 
-
+---
 # Blasting the Sg339ss1 genome
 A BLAST comparison between Sg339ss1 genome and B71 reference genome performed using BLASTN (e-value ≤ 1e-100).
 
