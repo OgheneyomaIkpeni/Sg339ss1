@@ -13,7 +13,7 @@ This repository consists bash command line codes for sequence quality assessment
 3. [BLAST](#Blast)
 4. [Genome Gene Prediction](#genome-gene-prediction)
 5. [Blasting the Sg339ss1 genome](#blasting-the-sg339ss1-genome)
-6. 
+6. [Using RNAseq Data to Confirm Gene Predictions](#using-rnaseq-data-to-confirm-gene-predictions)
 7. 
 
 ---
