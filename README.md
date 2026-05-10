@@ -574,6 +574,12 @@ Index the alignment file for fast lookup
    ```
    sbatch hisat2.sh path/to/Sg339ss1_final.fasta FR13_inCulture.fastq.gz
    ```
+Output files:
+
+FR13_Sg339ss1_hits.bam
+
+FR13_Sg339ss1_hits.bam.bai
+
 7.Look at the resulting alignment summary file to determine the fraction fo reads that aligned to your genome assembly
 
 #Alignment summary
@@ -585,11 +591,18 @@ Index the alignment file for fast lookup
 57.05% overall alignment rate
 
 
-8. Align the second set of reads to Sg33s1 genome assembly (In planta expression)
+8. Align the second set of reads to Sg339ss1 genome assembly (In planta expression)
 
    ```
    sbatch hisat2.sh path/to/MyGenomeID_final.fasta SSID116_inPlanta.fastq.gz
    ```
+
+Output files:
+
+SSID116_Sg339ss1 _hits.bam
+
+SSID116_Sg339ss1 _hits.bam.bai
+
 9.Look at the resulting alignment summary file to determine the fraction fo reads that aligned to your genome assembly
 
 #Alignment summary
@@ -609,10 +622,15 @@ Index the alignment file for fast lookup
     # genes with predicted introns
 
 
+
     # do the RNAseq data support the placement of the predicted introns?
+
+The RNA-seq read alignments support the predicted intron positions. Split reads spanning exon–exon junctions and reduced coverage within intronic regions indicate that most predicted introns are accurately placed.
 
 
    # are the introns spliced out 100% of the time?
+
+No, introns are not spliced out 100% of the time. Some RNA-seq reads map to intronic regions, suggesting incomplete splicing, alternative splicing, or the presence of unprocessed transcripts
 
 
    # genes that are only expressed in culture
