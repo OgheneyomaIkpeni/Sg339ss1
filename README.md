@@ -645,3 +645,6 @@ No, introns are not spliced out 100% of the time. Some RNA-seq reads map to intr
 
 
   # are there any expressed genes that were not predicted?
+Yes, some regions show clear RNA-seq expression without corresponding predicted gene models, suggesting incomplete annotation or missed genes during prediction.
+
+[![RNAseq expression without predicted genes](https://github.com/OgheneyomaIkpeni/Sg339ss1/blob/main/RNAseq_expression_without_predicted_genes.png)](https://github.com/OgheneyomaIkpeni/Sg339ss1/blob/main/RNAseq_expression_without_predicted_genes.png)
