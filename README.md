@@ -620,7 +620,7 @@ SSID116_Sg339ss1 _hits.bam.bai
 12) Use the browser to identify predicted genes that have large numbers of RNAseq reads aligning to them and then search for examples of the following:
 
     # genes with predicted introns
-
+[View RNAseq Support Figure](https://raw.githubusercontent.com/OgheneyomaIkpeni/Sg339ss1/main/RNAseq_support_for_intron_prediction_of_.png)
 
 
     # do the RNAseq data support the placement of the predicted introns?
