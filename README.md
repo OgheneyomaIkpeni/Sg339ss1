@@ -635,6 +635,7 @@ No, introns are not spliced out 100% of the time. Some RNA-seq reads map to intr
    # genes that are only expressed in culture
 
 
+
    # genes that are only expressed in planta
 
 ![Gene_expressed_only_inplanta.png](https://github.com/OgheneyomaIkpeni/Sg339ss1/blob/main/Gene_expressed_only_inplanta.png)
