@@ -641,7 +641,7 @@ No, introns are not spliced out 100% of the time. Some RNA-seq reads map to intr
 ![Gene_expressed_only_inplanta.png](https://github.com/OgheneyomaIkpeni/Sg339ss1/blob/main/Gene_expressed_only_inplanta.png)
 
    # predicted genes with no evidence of expression
-
+[![Predicted genes with no evidence of expression](https://github.com/OgheneyomaIkpeni/Sg339ss1/raw/main/predicted_genes_with_no_evidence_of_expression.png)](https://github.com/OgheneyomaIkpeni/Sg339ss1/blob/main/predicted_genes_with_no_evidence_of_expression.png)
 
 
   # are there any expressed genes that were not predicted?
